@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="BookStore.View.Sell"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStore.View"
+             Loaded="HoaDoa_Loaded"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="555" d:DesignWidth="1004">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="212*" />
+            <RowDefinition Height="293*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="575*" />
+            <ColumnDefinition Width="129*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="144,13,273,10" Grid.Column="1" Height="27" Width="158"><Run Text="Phiếu Bán Sách"/></TextBlock>
+
+        <Grid x:Name="pnlBooks" Grid.Row="1" Grid.Column="0" IsEnabled="False">
+            <DataGrid x:Name="dataBooks" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,-280">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding MaSach, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã Sách"/>
+                    <DataGridTextColumn Binding="{Binding TenSach, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tên Sách"/>
+                    <DataGridTextColumn Binding="{Binding TacGia, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tác Giả"/>
+                    <DataGridTextColumn Binding="{Binding GiaBan, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Đơn Giá"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid x:Name="pnlHoaDon" Grid.Row="1" Grid.Column="1" IsEnabled="False">
+            <DataGrid x:Name="dataCT" Margin="0,0,10,10" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding MaSach, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã Sách"/>
+                    <DataGridTextColumn Binding="{Binding SACH.TenSach, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tên Sách" />
+                    <DataGridTextColumn Binding="{Binding SoLuong, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Số lượng"/>
+                    <DataGridTextColumn Binding="{Binding DonGia, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Đơn giá"/>
+                    <DataGridTextColumn Binding="{Binding ThanhTien, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Thành tiền" Width="*"/>
+                    <DataGridTemplateColumn Header="Thực Hiện">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                        ToolTip="Xóa sách" Click="btnDeleteBook" BorderBrush="{x:Null}" Background="Black" Height="25" Width="25">
+                                    <materialDesign:PackIcon Kind="BinEmpty" Foreground="White" Height="20" Width="20" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="2" Margin="0,20,0,5">
+            <Border BorderThickness="2" BorderBrush="Black"  CornerRadius="15" Height="32" Margin="0,16,23,139">
+                <TextBox x:Name="tbSoLuong" Grid.Row="0" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="20,-2,19,-1"
+                     materialDesign:HintAssist.Hint="Nhập số lượng" FontSize="9"
+                     IsEnabled="{Binding SelectedItem, ElementName=dataBooks}"/>
+            </Border>
+
+            <Border BorderThickness="2" BorderBrush="Black" CornerRadius="15" Height="32" Margin="0,69,23,86">
+                <TextBox x:Name="tbDonGia" Grid.Row="0" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="19,-2,24,-2"
+                     materialDesign:HintAssist.Hint="Nhập giá" FontSize="9"
+                     IsEnabled="{Binding SelectedItem, ElementName=dataBooks}"/>
+            </Border>
+            <Border BorderThickness="2" Background="Black" CornerRadius="15" Margin="0,121,23,31">
+                <Button Content="Thêm Sách" Click="btnAddBook" Margin="2,0,-2,0"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}" Height="Auto" />
+            </Border>
+
+        </Grid>
+
+        <Grid  Grid.Row="2" Grid.Column="1" >
+            <DataGrid x:Name="dataHoaDon" ItemsSource="{Binding}" AutoGenerateColumns="False" IsEnabled="False"
+                          SelectionChanged="dataHoaDon_SelectionChanged"
+                          RowEditEnding="dataHoaDon_RowEditEnding" 
+                          AddingNewItem="dataHoaDon_AddingNewItem" 
+                          BeginningEdit="dataHoaDon_BeginningEdit" Margin="0,0,-88,67">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding SoHD, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã Hoá Đơn"/>
+                    <DataGridTextColumn Binding="{Binding MaKhachHang, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã Khách Hàng" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding NgayLap, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Ngày lập" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding ThanhToan, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tổng Tiền" IsReadOnly="True" Width="*"/>
+                    <DataGridTemplateColumn Header="Thực hiện">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                        ToolTip="Xóa hóa đơn" Click="btnDelete" BorderBrush="{x:Null}" Background="Black" Height="25" Width="25">
+                                    <materialDesign:PackIcon Kind="BinEmpty" Foreground="White" Height="20" Width="20" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Border  BorderBrush="Black"  BorderThickness="2" CornerRadius="15" Margin="64,247,457,15">
+                <ComboBox DockPanel.Dock="Left" x:Name="cbKhachHang" IsEditable="False" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="18,-2,16,-2"
+                              materialDesign:HintAssist.Hint="Chọn Khách Hàng"
+                              Width="Auto"
+                              FontSize="11"
+                              ItemsSource="{Binding}"
+                              IsReadOnly="True" Height="42"/>
+            </Border>
+
+            <Border  BorderBrush="Black" Background="Black" BorderThickness="2" CornerRadius="15" Margin="278,247,303,15">
+                <Button Click="btnAdd"
+                        Content="Tạo hóa đơn mới"
+                        Background="{x:Null}"
+                        FontSize="11"
+                        Foreground="White"
+                        BorderBrush="{x:Null}" Margin="3,-2,-2,-2" Height="Auto"/>
+            </Border>
+
+            <Border BorderBrush="Black" Background="Black" BorderThickness="2" CornerRadius="15" Margin="417,247,180,15">
+                <Button Click="btnUpdate"
+                        Content="Nhập sách"
+                        Background="{x:Null}"
+                        FontSize="11"
+                        Foreground="White"
+                        BorderBrush="{x:Null}" Height="Auto" Margin="-7,-2,-12,-2"/>
+            </Border>
+            <Border BorderBrush="Black" Background="Black" BorderThickness="2" CornerRadius="15" Margin="540,247,24,15">
+                <Button Click="btnSave"
+                        Content="Lưu hóa đơn"
+                        Background="{x:Null}"
+                        Foreground="White"
+                        FontSize="11"
+                        BorderBrush="{x:Null}" Height="Auto" Margin="0,-2"/>
+            </Border>
+        </Grid>
+
+    </Grid>
+</UserControl>
+

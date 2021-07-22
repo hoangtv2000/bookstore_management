@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="BookStore.View.Books"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStore.View"
+             mc:Ignorable="d"
+             Background="White"
+             d:DesignHeight="555" d:DesignWidth="1004"
+             Loaded="Books_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TextBlock FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center">Quản lý thông tin sách</TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="13" Margin="120,29,309,5" RenderTransformOrigin="0.524,0.05">Mã Sách</TextBlock>
+            <Border Grid.Row="0" Grid.Column="0" BorderBrush="	#444444" BorderThickness="2" CornerRadius="20" Margin="178,16,131,3" >
+                <TextBox x:Name="tbMaSach"  Margin="18,-2,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Mã Sách" IsEnabled="False"
+                     VerticalAlignment="Center"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.MaSach, ElementName=dataBooks}" Height="34"/>
+            </Border>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" FontSize="13" Margin="120,23,298,51" Grid.RowSpan="2">Tên Sách</TextBlock>
+            <Border Grid.Row="1" Grid.Column="0" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="178,10,10,8" >
+                <TextBox x:Name="tbTenSach"  Margin="18,-2,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Tên Sách" IsEnabled="False"
+                     VerticalAlignment="Bottom"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.TenSach, ElementName=dataBooks}" Height="34"/>
+            </Border>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" FontSize="13" Margin="120,23,324,-10">Tác Giả</TextBlock>
+            <Border Grid.Row="2" Grid.Column="0" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="178,10,80,8" >
+                <TextBox x:Name="tbTacGia"  Margin="18,-2,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Tác Giả" IsEnabled="False"
+                     VerticalAlignment="Center"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.TacGia, ElementName=dataBooks}" Height="34"/>
+            </Border>
+
+            <TextBlock Grid.Row="0" Grid.Column="2" FontSize="13" Margin="32,29,398,48" Grid.RowSpan="2">Thể Loại</TextBlock>
+            <Border Grid.Row="0" Grid.Column="2" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="121,16,193,3" >
+                <ComboBox x:Name="cbTheLoai" Grid.Row="0" Grid.Column="2"  IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="22,-2,10,-1"
+                      materialDesign:HintAssist.Hint="Chọn Thể Loại" IsEnabled="False"
+                      ItemsSource="{Binding}"
+                      IsReadOnly="True"
+                      FontSize="11"
+                      Text="{Binding SelectedItem.THELOAI.TenTheLoai, ElementName=dataBooks}"
+                      SelectedValue="{Binding SelectedItem.THELOAI, ElementName=dataBooks}" Height="34"/>
+            </Border>
+
+            <TextBlock Grid.Row="1" Grid.Column="2" FontSize="13" Margin="32,23,376,0">Nhà Xuất Bản</TextBlock>
+            <Border Grid.Row="1" Grid.Column="2" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="121,10,102,9">
+                <ComboBox x:Name="cbNhaXuatBan" Grid.Row="1" Grid.Column="2"  IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="18,-2,10,-1"
+                      materialDesign:HintAssist.Hint="Chọn Nhà Xuất Bản" IsEnabled="False"
+                      ItemsSource="{Binding}"
+                      IsReadOnly="True"
+                      FontSize="11"
+                      Text="{Binding SelectedItem.NHAXUATBAN.TenNhaXuatBan, ElementName=dataBooks}"
+                      SelectedValue="{Binding SelectedItem.NHAXUATBAN, ElementName=dataBooks}" Height="33"/>
+            </Border>
+
+            <TextBlock Grid.Row="2" Grid.Column="2" FontSize="13" Margin="46,23,398,-10" Text="Giá Bán"/>
+            <Border Grid.Row="2" Grid.Column="2" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="121,8,137,10" >
+                <TextBox x:Name="tbGiaBan"  Margin="18,-2,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Giá Bán" IsEnabled="False"
+                     VerticalAlignment="Center"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.GiaBan, ElementName=dataBooks}" Height="34"/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="0,20,5,10">
+            <DataGrid x:Name="dataBooks" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding MaSach, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã Sách"/>
+                    <DataGridTextColumn Binding="{Binding TenSach, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tên Sách"/>
+                    <DataGridTextColumn Binding="{Binding TacGia, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tác Giả"/>
+                    <DataGridTextColumn Binding="{Binding GiaBan, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Đơn Giá"/>
+                    <DataGridTextColumn Binding="{Binding NHAXUATBAN.TenNhaXuatBan, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nhà Xuất Bản"/>
+                    <DataGridTextColumn Binding="{Binding THELOAI.TenTheLoai, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Thể Loại" Width="*"/>
+                    <DataGridTemplateColumn Header="Thực Hiện">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                        ToolTip="Xóa sách" Click="deleteBook"  BorderBrush="{x:Null}" Background="Black" Height="25" Width="25">
+                                    <materialDesign:PackIcon Kind="BinEmpty" Foreground="White" Height="20" Width="20" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <Border Grid.Row="2" BorderBrush="#000000" BorderThickness="2" CornerRadius="20" Margin="249,10,609,0" Height="34" Background="Black" VerticalAlignment="Top">
+            <Button 
+                Content="Thêm Sách"
+                FontSize="12"
+                Background="{x:Null}"
+                Foreground="#ffff"
+                BorderBrush="{x:Null}"
+                Click="addBook"/>
+        </Border>
+
+        <Border Grid.Row="2" BorderBrush="#000000" BorderThickness="2" CornerRadius="20" Margin="429,10,429,0" Height="34" Background="Black" VerticalAlignment="Top">
+            <Button 
+                Content="Lưu Sách"
+                FontSize="12"
+                Background="{x:Null}"
+                Foreground="#ffff"
+                BorderBrush="{x:Null}"
+                Click="saveBook"/>
+        </Border>
+
+        <Border Grid.Row="2" BorderBrush="#000000" BorderThickness="2" CornerRadius="20" Margin="611,10,247,0" Height="34" Background="Black" VerticalAlignment="Top">
+            <Button 
+                Content="Cập Nhật Sách"
+                FontSize="12"
+                Background="{x:Null}"
+                Foreground="#ffff"
+                BorderBrush="{x:Null}"
+                Click="updateBook"/>
+        </Border>
+
+    </Grid>
+</UserControl>

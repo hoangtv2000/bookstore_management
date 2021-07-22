@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="BookStore.View.SearchCustomer"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStore.View"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="555" d:DesignWidth="1004">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Tìm kiếm khách hàng</TextBlock>
+        <TextBlock />
+        <Border Grid.Row="1" Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="225,6,225,4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Style="{DynamicResource MaterialDesignToolButton}" Click="btnSearch">
+                    <materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+                </Button>
+                <TextBox x:Name="tbSearch" Grid.Column="1" 
+                         Margin="8 0 0 0" materialDesign:HintAssist.Hint="Tìm kiếm khách hàng" 
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
+                         MinWidth="300" VerticalAlignment="Center" />
+                <Button Grid.Column="2" Style="{DynamicResource MaterialDesignToolForegroundButton}" Margin="8 0 0 0" Panel.ZIndex="0" Click="btnSearch">
+                    <materialDesign:PackIcon Kind="Send" />
+                </Button>
+            </Grid>
+        </Border>
+
+        <DataGrid x:Name="dataSearch" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="2" Margin="0,20,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding MaKhachHang, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã khách hàng"/>
+                <DataGridTextColumn Binding="{Binding TenKhachHang, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tên khách hàng"/>
+                <DataGridTextColumn Binding="{Binding Email, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Email"/>
+                <DataGridTextColumn Binding="{Binding SDT, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Số điện thoại"/>
+                <DataGridTextColumn Binding="{Binding DiaChi, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Địa chỉ"/>
+                <DataGridTextColumn Binding="{Binding SoTienNo, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Số tiền nợ"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

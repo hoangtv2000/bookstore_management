@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="BookStore.View.Cash"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStore.View"
+             mc:Ignorable="d" 
+             Loaded="Cash_Loaded"
+             Background="White"
+             d:DesignHeight="555" d:DesignWidth="1004">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold">Phiếu thu tiền</TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Margin="141,28,236,10">Khách Hàng</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="257,16,16,10">
+                <ComboBox x:Name="cbKhachHang" 
+                      IsEditable="False" 
+                      Margin="18,-2,16,-2"
+                      materialDesign:HintAssist.Hint="Chọn Khách Hàng"
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                      ItemsSource="{Binding}"
+                      FontSize="11"
+                      IsReadOnly="True" Height="34" 
+                      VerticalAlignment="Center"/>
+            </Border>
+
+            <TextBlock Margin="34,30,416,4" Grid.Column="1">Tiền Nợ</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="117,16,166,8" Grid.Row="0" Grid.Column="1">
+                <TextBox x:Name="tbTienNo"  
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,-2,18,-1"
+                     materialDesign:HintAssist.Hint="Tiền nợ" IsEnabled="False"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.SoTienNo, ElementName=cbKhachHang}" VerticalContentAlignment="Stretch" VerticalAlignment="Center" HorizontalAlignment="Right" Width="180" Height="35"/>
+            </Border>
+
+            <TextBlock Margin="141,27,249,10" Grid.Row="1" Grid.Column="0">Nhập số tiền thu</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="20" Grid.Row="1" Grid.Column="0" Margin="298,16,16,10" >
+                <TextBox x:Name="tbTienThu" 
+                     materialDesign:HintAssist.Hint="Nhập số tiền thu"
+                     FontSize="11"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="16,-2,18,-1"
+                     VerticalContentAlignment="Stretch" VerticalAlignment="Center" Height="33"/>
+            </Border>
+
+            <TextBlock Margin="34,27,366,10" Grid.Row="1" Grid.Column="1">Mã phiếu thu</TextBlock>
+            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="20" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Width="160" Margin="0,16,225,10">
+                <TextBox x:Name="tbMaPT" Grid.Row="1" Grid.Column="0" 
+                     materialDesign:HintAssist.Hint="Nhập mã phiếu thu"
+                     FontSize="11"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="17,-2,0,-2"
+                     VerticalContentAlignment="Stretch" VerticalAlignment="Center" Height="34" HorizontalAlignment="Left" Width="120"/>
+            </Border>
+
+        </Grid>
+
+        <Border Grid.Row="2" BorderBrush="Black" Background="Black" BorderThickness="2" CornerRadius="20" Margin="425,14,425,0">
+            <Button Content="Thêm phiếu thu"         
+                    Click="btnAdd" 
+                    FontSize="12"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Foreground="#ffff"/>
+        </Border>
+
+        <DataGrid x:Name="dataCash" Grid.Row="3" Margin="0,20,0,0" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding SoPT, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã Phiếu Thu Tiền"/>
+                <DataGridTextColumn Binding="{Binding KHACHHANG.TenKhachHang, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tên khách hàng"/>
+                <DataGridTextColumn Binding="{Binding NgayLap, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Ngày lập"/>
+                <DataGridTextColumn Binding="{Binding SoTienThu, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Số tiền thu" Width="*"/>
+                <DataGridTemplateColumn Header="Thực Hiện">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                        ToolTip="Xóa phiếu" Click="btnDelete" BorderBrush="{x:Null}" Background="Black" Height="25" Width="25">
+                                <materialDesign:PackIcon Kind="BinEmpty" Foreground="White" Height="20" Width="20" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

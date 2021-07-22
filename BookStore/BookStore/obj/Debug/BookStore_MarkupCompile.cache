@@ -1,0 +1,20 @@
+﻿BookStore
+
+
+winexe
+C#
+.cs
+E:\Projects\Book Management Final\BookStore\BookStore\obj\Debug\
+BookStore
+none
+false
+DEBUG;TRACE
+E:\Projects\Book Management Final\BookStore\BookStore\App.xaml
+16667401385
+2482335943
+41-429734735
+21-1047744504
+View\BookInfo.xaml;View\Books.xaml;View\Cash.xaml;View\Customers.xaml;View\DebtReport.xaml;View\Find.xaml;View\ImportBook.xaml;View\Interface.xaml;View\Login.xaml;View\Menu.xaml;View\SearchCustomer.xaml;View\Sell.xaml;View\Setting.xaml;View\Test.xaml;View\ExistReport.xaml;View\ViewSwitcher.xaml;
+
+False
+

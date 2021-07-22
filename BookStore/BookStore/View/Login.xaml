@@ -1,0 +1,134 @@
+﻿<Window x:Class="BookStore.View.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Login" 
+        Height="600" 
+        Width="800" 
+        WindowStyle="None" 
+        ResizeMode="NoResize" 
+        MouseDown="Login_MouseDown" 
+        WindowStartupLocation="CenterScreen" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" Icon="zera.ico">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="TopCover" Grid.Row="0">
+            <materialDesign:ColorZone materialDesign:ShadowAssist.ShadowDepth="Depth3" VerticalAlignment="Stretch">
+
+            </materialDesign:ColorZone>
+        </Grid>
+
+        <Label x:Name="ManageTitle" 
+               Content="QUẢN LÝ NHÀ SÁCH" 
+               HorizontalAlignment="Left"
+               FontSize="21"
+               Margin="59,24,0,0" 
+               VerticalAlignment="Top" 
+               Foreground="#000000" FontWeight="Bold" Background="{x:Null}"/>
+
+
+        <Image Grid.Row="0"
+               Source="E:/Projects/Book Management Final/BookStore/BookStore/Resources/Login/icon123.png" Margin="17,18,741,24" ></Image>
+
+        <TextBlock
+            
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="541,33,0,27" Width="63" Height="26">
+            Ngôn ngữ :
+        </TextBlock>
+
+        <ComboBox
+            Margin="617,18,55,33"
+            Height="35"
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+            materialDesign:TextFieldAssist.HasClearButton="True"
+            materialDesign:TextFieldAssist.SuffixText=""
+            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+            materialDesign:ColorZoneAssist.Mode="Inverted"
+            materialDesign:HintAssist.Hint="Tiếng Việt"
+            materialDesign:HintAssist.HelperText="Chọn ngôn ngữ"
+            MinWidth="128">
+            <ComboBoxItem
+                Content="Vietnamese" />
+            <ComboBoxItem
+                Content="English" />
+            <ComboBoxItem
+                Content="Français" />
+            <ComboBoxItem
+                Content="中国" />
+        </ComboBox>
+
+        <Label Grid.Row="1"
+               x:Name="login" 
+               Content="ĐĂNG NHẬP" 
+               FontSize="20"
+               FontWeight="Bold"
+               HorizontalAlignment="Center" 
+               Margin="345,145,305,0" 
+               VerticalAlignment="Top" 
+               Foreground="#000000" RenderTransformOrigin="0.535,2.75" Width="150"/>
+
+        <TextBlock  Grid.Row="1"
+                     HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" 
+                       Margin="211,215,0,281" Width="68" Height="18" RenderTransformOrigin="0.272,0.528">Tài khoản
+        </TextBlock>
+
+        <TextBlock  Grid.Row="1"
+                     HorizontalAlignment="Left" 
+                       VerticalAlignment="Center" 
+                       Margin="211,265,0,231" Width="61" Height="18" RenderTransformOrigin="0.533,0.639">Mật khẩu
+        </TextBlock>
+
+        <Border Margin="277,205,235,270" BorderBrush="#ddd" BorderThickness="2" CornerRadius="20" Grid.Row="1">
+            <TextBox x:Name="txtbUser" 
+                     VerticalAlignment="Center" 
+                     Background="{x:Null}" 
+                     BorderBrush="{x:Null}" 
+                     Margin="8" Height="26" />
+        </Border>
+
+        <Border Margin="277,255,235,220" BorderBrush="#ddd" BorderThickness="2" CornerRadius="20" Grid.Row="1">
+            <PasswordBox x:Name="passwordBox" 
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Center" 
+                         Width="234" 
+                         Background="{x:Null}" 
+                         BorderBrush="{x:Null}" 
+                         Margin="10,4,0,4"/>
+        </Border>
+
+        <Border Margin="305,319,385,163" BorderBrush="Black" BorderThickness="2" CornerRadius="15" Grid.Row="1" Background="Black">
+            <Button x:Name="btnLogin" 
+                Content="Đăng Nhập"
+                FontSize="12"
+                Background="{x:Null}"
+                Foreground="#ffff"
+                BorderBrush="{x:Null}"
+                Click="btnLogin_Click" Grid.Row="1" Height="Auto" Margin="8,1,4,1" />
+        </Border>
+
+        <Border Margin="420,319,270,163" BorderBrush="Black" BorderThickness="2" CornerRadius="15" Grid.Row="1" Background="Black">
+            <Button x:Name="btnClose" 
+                Content="Đóng" 
+                FontSize="12"
+                Background="{x:Null}"
+                Foreground="#ffff"
+                BorderBrush="{x:Null}"
+                Click="btnClose_Click" Grid.Row="1" Height="Auto" Margin="14,1,16,1" />
+        </Border>
+
+    </Grid>
+</Window>

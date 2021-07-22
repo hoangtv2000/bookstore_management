@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="BookStore.View.BookInfo"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStore.View"
+             xmlns:viewModel="clr-namespace:BookStore.ViewModel"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="555" d:DesignWidth="1004">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20">Thể Loại</TextBlock>
+        </Grid>
+        
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10,10,10,5">
+            <DataGrid x:Name="dataTheLoai" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserDeleteRows="True"
+                      Loaded="theLoai_Loaded"
+                      CellEditEnding="theLoai_CellEditEnding"
+                      RowEditEnding="theLoai_RowEditEnding" 
+                      AddingNewItem="theLoai_AddingNewItem" 
+                      BeginningEdit="theLoai_BeginningEdit" VerticalContentAlignment="Center">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding MaTheLoai, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã"/>
+                    <DataGridTextColumn Binding="{Binding TenTheLoai, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tên thể loại" Width="*"/>
+                    <DataGridTemplateColumn Header="Thực Hiện">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                        ToolTip="Xóa thể loại" Click="deleteTheLoai" BorderBrush="{x:Null}" Background="Black" Height="25" Width="25">
+                                    <materialDesign:PackIcon  Kind="BinEmpty" Foreground="White" Height="Auto" Width="Auto" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20">Nhà Xuất Bản</TextBlock>
+        </Grid>
+        
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10,10,10,5">
+            <DataGrid x:Name="dataNhaXuatBan" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserDeleteRows="True"
+                      Loaded="nhaXuatBan_Loaded"
+                      RowEditEnding="nhaXuatBan_RowEditEnding" 
+                      CellEditEnding="nhaXuatBan_CellEditEnding"
+                      AddingNewItem="nhaXuatBan_AddingNewItem" 
+                      BeginningEdit="nhaXuatBan_BeginningEdit" VerticalContentAlignment="Center">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding MaNhaXuatBan, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã Nhà Xuất Bản"/>
+                    <DataGridTextColumn Binding="{Binding TenNhaXuatBan, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tên nhà xuất bản" Width="*"/>
+                    <DataGridTemplateColumn Header="Thực Hiện">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                        ToolTip="Xóa nhà xuất bản" Click="deleteNhaXuatBan" BorderBrush="{x:Null}" Background="Black" Height="25" Width="25">
+                                    <materialDesign:PackIcon Kind="BinEmpty" Foreground="White" Height="Auto" Width="Auto" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

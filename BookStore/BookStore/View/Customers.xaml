@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="BookStore.View.Customers"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookStore.View"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="555" d:DesignWidth="1004" Loaded="Customer_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="160"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center">Quản lý khách hàng</TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="13" Margin="120,29,274,5" RenderTransformOrigin="0.524,0.05">Mã Khách Hàng</TextBlock>
+            <Border Grid.Row="0" Grid.Column="0" BorderBrush="	#444444" BorderThickness="2" CornerRadius="20" Margin="234,16,63,3" >
+                <TextBox x:Name="tbMaKH"  Margin="18,-2,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Mã Khách Hàng" IsEnabled="False"
+                     VerticalAlignment="Center"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.MaKhachHang, ElementName=dataCustomers}" Height="34"/>
+            </Border>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" FontSize="13" Margin="120,25,274,49" Grid.RowSpan="2">Tên Khách Hàng</TextBlock>
+            <Border Grid.Row="1" Grid.Column="0" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="234,12,10,6" >
+                <TextBox x:Name="tbTenKH"  Margin="18,-2,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Tên Khách Hàng" IsEnabled="False"
+                     VerticalAlignment="Bottom"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.TenKhachHang, ElementName=dataCustomers}" Height="34"/>
+            </Border>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" FontSize="13" Margin="170,23,274,-10">Đia Chỉ</TextBlock>
+            <Border Grid.Row="2" Grid.Column="0" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="234,10,80,8" >
+                <TextBox x:Name="tbDiaChi"  Margin="18,-2,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Đia Chỉ" IsEnabled="False"
+                     VerticalAlignment="Center"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.DiaChi, ElementName=dataCustomers}" Height="34"/>
+            </Border>
+
+
+            <TextBlock Grid.Row="0" Grid.Column="2" FontSize="13" Margin="32,29,367,48" Grid.RowSpan="2">Số Điện Thoại</TextBlock>
+            <Border Grid.Row="0" Grid.Column="2" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="157,16,107,3" >
+                <TextBox x:Name="tbSDT"  Margin="18,-2,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Số điện thoại" IsEnabled="False"
+                     VerticalAlignment="Center"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.SDT, ElementName=dataCustomers}" Height="34"/>
+            </Border>
+
+            <TextBlock Grid.Row="1" Grid.Column="2" FontSize="13" Margin="32,25,376,51" Grid.RowSpan="2">Email</TextBlock>
+            <Border Grid.Row="1" Grid.Column="2" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="121,12,107,7">
+                <TextBox x:Name="tbEmail"  Margin="18,-3,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Nhập Email" IsEnabled="False"
+                     VerticalAlignment="Center"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.Email, ElementName=dataCustomers}" Height="34"/>
+            </Border>
+
+            <TextBlock Grid.Row="2" Grid.Column="2" FontSize="13" Margin="32,23,376,0">Tiền nợ</TextBlock>
+            <Border Grid.Row="2" Grid.Column="2" BorderBrush="#444444" BorderThickness="2" CornerRadius="20" Margin="121,11,107,8">
+                <TextBox x:Name="tbTienNo"  Margin="18,-3,19,-1"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Số tiền nợ" IsEnabled="False"
+                     VerticalAlignment="Center"
+                     FontSize="11"
+                     Text="{Binding SelectedItem.SoTienNo, ElementName=dataCustomers}" Height="34"/>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2" BorderBrush="#000000" BorderThickness="2" CornerRadius="20" Margin="249,10,609,0" Height="34" Background="Black" VerticalAlignment="Top">
+            <Button 
+                Content="Thêm Khách Hàng"
+                FontSize="12"
+                Background="{x:Null}"
+                Foreground="#ffff"
+                BorderBrush="{x:Null}"
+                Click="btnAdd"/>
+        </Border>
+
+        <Border Grid.Row="2" BorderBrush="#000000" BorderThickness="2" CornerRadius="20" Margin="429,10,429,0" Height="34" Background="Black" VerticalAlignment="Top">
+            <Button 
+                Content="Lưu Khách Hàng"
+                FontSize="12"
+                Background="{x:Null}"
+                Foreground="#ffff"
+                BorderBrush="{x:Null}"
+                Click="btnSave"/>
+        </Border>
+
+        <Border Grid.Row="2" BorderBrush="#000000" BorderThickness="2" CornerRadius="20" Margin="611,10,230,0" Height="34" Background="Black" VerticalAlignment="Top">
+            <Button 
+                Content="Cập Nhật Khách Hàng"
+                FontSize="12"
+                Background="{x:Null}"
+                Foreground="#ffff"
+                BorderBrush="{x:Null}"
+                Click="btnUpdate"/>
+        </Border>
+
+        <Grid Grid.Row="3" Margin="0,20,5,10">
+            <DataGrid x:Name="dataCustomers" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding MaKhachHang, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Mã"/>
+                    <DataGridTextColumn Binding="{Binding TenKhachHang, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tên khách hàng"/>
+                    <DataGridTextColumn Binding="{Binding DiaChi, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Địa chỉ"/>
+                    <DataGridTextColumn Binding="{Binding Email, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Email"/>
+                    <DataGridTextColumn Binding="{Binding SDT, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Số ĐT"/>
+                    <DataGridTextColumn Binding="{Binding SoTienNo, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tiền Nợ" Width="*"/>
+                    <DataGridTemplateColumn Header="Thực Hiện">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                        ToolTip="Xóa khách hàng" Click="btnDelete" BorderBrush="{x:Null}" Background="Black" Height="25" Width="25">
+                                    <materialDesign:PackIcon Kind="BinEmpty" Foreground="White" Height="20" Width="20" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>
